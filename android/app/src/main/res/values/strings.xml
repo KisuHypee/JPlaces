@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">JPlaces</string>
+    <string name="title_activity_main">JPlaces</string>
+    <string name="package_name">com.jplaces.app</string>
+    <string name="custom_url_scheme">com.jplaces.app</string>
+</resources>

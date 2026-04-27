@@ -1,0 +1,127 @@
+.container {
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  padding-top: var(--safe-area-top);
+  z-index: 100;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: var(--deep-pink);
+  padding: 8px;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 20px;
+  color: var(--deep-pink);
+}
+
+.main {
+  padding: 90px 16px 40px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #999;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+
+.settingCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.settingIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--sakura-pink-soft);
+  color: var(--sakura-pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settingInfo {
+  flex: 1;
+}
+
+.settingInfo h3 {
+  font-size: 16px;
+  color: var(--foreground);
+  margin-bottom: 2px;
+}
+
+.settingInfo p {
+  font-size: 12px;
+  color: #888;
+}
+
+.toggle {
+  width: 44px;
+  height: 24px;
+  background: #eee;
+  border-radius: 12px;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.toggleThumb {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.toggleThumb.active {
+  transform: translateX(20px);
+}
+
+.settingCard:has(.toggleThumb.active) .toggle {
+  background: var(--sakura-pink);
+}
+
+.select {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--deep-pink);
+  cursor: pointer;
+  padding: 4px;
+}

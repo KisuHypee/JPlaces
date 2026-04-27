@@ -1,0 +1,175 @@
+.container {
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  padding-top: var(--safe-area-top);
+  z-index: 100;
+  gap: 12px;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: var(--deep-pink);
+  padding: 8px;
+  cursor: pointer;
+}
+
+.sortBtn {
+  background: none;
+  border: none;
+  color: var(--deep-pink);
+  padding: 8px;
+  cursor: pointer;
+}
+
+.searchWrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  color: var(--sakura-pink);
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  font-size: 16px;
+  color: var(--foreground);
+}
+
+.filterSection {
+  padding-top: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.filterScroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 0 16px;
+  padding-bottom: 4px;
+}
+
+.filterScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.filterBlob {
+  white-space: nowrap;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterBlob.active {
+  background: var(--deep-pink);
+  border-color: var(--deep-pink);
+  color: white;
+}
+
+.main {
+  padding: 0 16px 40px;
+}
+
+.empty {
+  padding: 80px 0;
+  text-align: center;
+  color: #999;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.locationCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.cardImagePlaceholder {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: var(--sakura-pink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardInfo {
+  flex: 1;
+}
+
+.cardName {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--deep-pink);
+  margin-bottom: 2px;
+}
+
+.cardMeta {
+  font-size: 13px;
+  color: #888;
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  padding: 8px;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteBtn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  color: #ff1a1a;
+}

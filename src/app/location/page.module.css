@@ -1,0 +1,230 @@
+.container {
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background-color: var(--sakura-pink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  padding-top: var(--safe-area-top);
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-outfit);
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+  pointer-events: none;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.backBtn, .shareBtn, .editBtn {
+  background: none;
+  border: none;
+  color: white;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.expenseLabel {
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+
+.galleryTrack {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  height: 100%;
+}
+
+.galleryTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.galleryItem {
+  min-width: 100%;
+  height: 100%;
+  scroll-snap-align: start;
+  position: relative;
+}
+
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageCounter {
+  position: absolute;
+  top: 66px;
+  right: 20px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  backdrop-filter: blur(4px);
+}
+
+.main {
+  padding-bottom: 40px;
+  padding-top: 56px;
+}
+
+.gallery {
+  width: 100%;
+  height: 350px;
+  background: #eee;
+  overflow: hidden;
+}
+
+.galleryPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--sakura-pink), var(--deep-pink));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  padding: 24px 20px;
+  margin-top: -30px;
+  background: var(--background);
+  border-radius: 32px 32px 0 0;
+  position: relative;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+}
+
+.headerInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.areaLabel {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--sakura-pink);
+  font-weight: 700;
+}
+
+.name {
+  font-size: 28px;
+  color: var(--deep-pink);
+  line-height: 1.2;
+}
+
+.categoryLabel {
+  font-size: 14px;
+  color: #888;
+}
+
+.saveBtn {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.saveBtn.saved {
+  color: var(--sakura-pink);
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.linkCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  color: var(--foreground);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.linkCard:active {
+  background: var(--sakura-pink-soft);
+}
+
+.linkIcon {
+  color: var(--sakura-pink);
+}
+
+.ext {
+  margin-left: auto;
+  color: #ccc;
+}
+
+.expenseSection {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.expenseTag {
+  padding: 8px 16px;
+  background: var(--pink-soft);
+  color: var(--deep-pink);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}

@@ -1,0 +1,17 @@
+.fab {
+  position: fixed;
+  bottom: 32px;
+  right: 24px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--deep-pink), var(--sakura-pink));
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(26, 35, 126, 0.3);
+  cursor: pointer;
+  z-index: 100;
+  padding-bottom: var(--safe-area-bottom);
+}

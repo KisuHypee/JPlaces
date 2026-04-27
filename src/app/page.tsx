@@ -1,66 +1,89 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search as SearchIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import Toolbar from '@/components/Toolbar';
+import Sidebar from '@/components/Sidebar';
+import CategoryList from '@/components/CategoryList';
+import AreaList from '@/components/AreaList';
+import AddButton from '@/components/AddButton';
+import styles from './page.module.css';
+
 
 export default function Home() {
+  const router = useRouter();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasLoadedBefore, setHasLoadedBefore] = useState(true);
+
+  useEffect(() => {
+    const loaded = localStorage.getItem('jplaces_loaded');
+    if (!loaded) {
+      setIsLoading(true);
+      setHasLoadedBefore(false);
+      localStorage.setItem('jplaces_loaded', 'true');
+      const timer = setTimeout(() => setIsLoading(false), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className={styles.container}>
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div 
+            key="splash"
+            className={styles.splash}
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              className={styles.splashContent}
+            >
+              <h1 className={styles.splashLogo}>JPlaces</h1>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {!isLoading && (
+        <motion.main 
+          key="content"
+          className={styles.main}
+          initial={hasLoadedBefore ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Toolbar 
+            onMenuClick={() => setIsMenuOpen(!isMenuOpen)} 
+            isOpen={isMenuOpen}
+          />
+          
+          <Sidebar 
+            isOpen={isMenuOpen} 
+            onClose={() => setIsMenuOpen(false)} 
+          />
+
+          <div className={styles.scrollContent}>
+            <div className={styles.hero}>
+              <h1 className={styles.headline}>Where to next?</h1>
+            </div>
+
+            <CategoryList />
+            <AreaList />
+            
+            <div className={styles.footer_padding} />
+          </div>
+
+          <AddButton />
+        </motion.main>
+      )}
     </div>
   );
 }

@@ -1,0 +1,183 @@
+.container {
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background-color: var(--sakura-pink);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  padding-top: var(--safe-area-top);
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: white;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 10; /* Ensure it stays above absolute title */
+}
+
+
+.main {
+  padding: 76px 20px 40px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.magicSection {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: var(--pink-soft);
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
+}
+
+.magicLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  color: var(--deep-pink);
+  margin-bottom: 4px;
+}
+
+.sparkle {
+  color: var(--accent-gold);
+}
+
+.magicHint {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.magicInputGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: var(--background);
+  font-size: 14px;
+}
+
+.magicBtn {
+  background: var(--deep-pink);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  font-size: 16px;
+  color: var(--foreground);
+}
+
+.field textarea {
+  height: 100px;
+  resize: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.newAreaGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.newAreaGroup input {
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 2px solid var(--deep-pink);
+  background: var(--card-bg);
+  font-size: 16px;
+  color: var(--foreground);
+}
+
+.newAreaGroup button {
+  align-self: flex-start;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #666;
+}
+
+.submitBtn {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--deep-pink), var(--sakura-pink));
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+.submitBtn:active {
+  transform: scale(0.98);
+}
