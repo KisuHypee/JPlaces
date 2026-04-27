@@ -9,12 +9,23 @@ import Sidebar from '@/components/Sidebar';
 import CategoryList from '@/components/CategoryList';
 import AreaList from '@/components/AreaList';
 import AddButton from '@/components/AddButton';
+import { registerBackAction } from '@/lib/backButtonRegistry';
 import styles from './page.module.css';
 
 
 export default function Home() {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      return registerBackAction(() => {
+        setIsMenuOpen(false);
+        return true;
+      });
+    }
+  }, [isMenuOpen]);
+
   const [isLoading, setIsLoading] = useState(false);
   const [hasLoadedBefore, setHasLoadedBefore] = useState(true);
 

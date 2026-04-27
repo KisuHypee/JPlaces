@@ -1,11 +1,12 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { App } from '@capacitor/app';
+import { Capacitor } from '@capacitor/core';
+import { executeBackActions } from '@/lib/backButtonRegistry';
 
 export default function BackButtonHandler() {
-  const router = useRouter();
   const pathname = usePathname();
 
   // Use a ref for the current pathname to avoid re-adding the listener on every navigation
@@ -16,32 +17,30 @@ export default function BackButtonHandler() {
   }, [pathname]);
 
   useEffect(() => {
+    // Only register the listener on native platforms (Android)
+    if (!Capacitor.isNativePlatform()) return;
+
     let handler: any;
     
     const setup = async () => {
-      // Remove any existing listeners first to be absolutely sure
-      // (Though removeAllListeners might be too aggressive, remove() is enough)
-      
-      handler = await App.addListener('backButton', ({ canGoBack }) => {
-        // Log to help debug in development
-        console.log(`[BackButton] Current Path: ${pathnameRef.current}, canGoBack: ${canGoBack}`);
+      handler = await App.addListener('backButton', () => {
+        // 1. First, try to execute registered back actions (e.g., closing sidebars/modals)
+        if (executeBackActions()) {
+          console.log('[BackButton] Action handled by registry');
+          return;
+        }
         
-        // Define root paths where the app should exit
+        // 2. If no component handled it, determine if we should exit or navigate back
         const isRootPage = pathnameRef.current === '/' || pathnameRef.current === '/home';
         
         if (isRootPage) {
           console.log('[BackButton] On root page, exiting app...');
           App.exitApp();
         } else {
-          if (canGoBack) {
-            console.log('[BackButton] Subpage with history, going back...');
-            router.back();
-          } else {
-            console.log('[BackButton] Subpage without history, navigating to root...');
-            // If we're on a subpage but have no history (e.g., direct link),
-            // navigate to root instead of exiting for a better UX.
-            router.push('/');
-          }
+          console.log('[BackButton] Subpage, navigating back via window.history.back()');
+          // Using window.history.back() directly as it's more immediate and 
+          // consistent with the SpendPare implementation.
+          window.history.back();
         }
       });
     };
@@ -50,11 +49,10 @@ export default function BackButtonHandler() {
 
     return () => {
       if (handler) {
-        console.log('[BackButton] Removing listener');
         handler.remove();
       }
     };
-  }, [router]);
+  }, []); // router is not needed here as we use window.history.back()
 
   return null;
 }
